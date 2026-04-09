@@ -20,6 +20,9 @@ public class Aluno {
     private String matricula;
     private String status;
 
+    public Aluno (){
+
+    }
 
 
     public Aluno(String nome, String cpf, Date dataNasc, String email, String telefone, String matricula, String status) {
