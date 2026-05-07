@@ -13,17 +13,20 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Professor {
+public class Professor{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
-    private String cpf;
-    private String email;
-    private String telefone;
+
+    @OneToOne
+    private Pessoa pessoa;
+
     private String titulacao;
     private String especialidade;
+
+    @ManyToOne
+    private Departamento departamento;
 
 
 }

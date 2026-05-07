@@ -18,11 +18,15 @@ public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
-    private String codCurso;
-    private int cargaHorariaCurso;
-    private int duracaoCurso;
+    private int cargaHoraria;
+    private int duracao;
     private String turno;
     private String status;
+    private Integer periodos;
+
+    @ManyToOne
+    private Departamento departamento;
 
 }

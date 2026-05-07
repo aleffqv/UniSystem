@@ -1,6 +1,5 @@
 package com.Unis.UniSystem.Model;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,21 +7,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "disciplinas")
+@Table(name = "departamentos")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Disciplina {
+public class Departamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
-    private String codigo;
-    private int cargaHoraria;
-    private int periodo;
 
-    @ManyToOne
-    private Curso curso;
+    private String nome;
 }
