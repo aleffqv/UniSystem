@@ -1,6 +1,8 @@
 package com.Unis.UniSystem.Model;
 
 
+import com.Unis.UniSystem.Model.Enums.Genero;
+import com.Unis.UniSystem.Model.Enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,11 +25,16 @@ public class Pessoa implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     private String nome;
     private String cpf;
+    private String email;
+
+    @Enumerated(EnumType.STRING)
+    private Genero genero;
+
     private String telefone;
     private LocalDate dataNascimento;
 
-
+    @Enumerated(EnumType.STRING)
+    private Status status;
 }

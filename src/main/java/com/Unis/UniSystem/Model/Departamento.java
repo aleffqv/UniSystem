@@ -1,14 +1,11 @@
 package com.Unis.UniSystem.Model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "departamentos")
-
 public class Departamento {
 
     @Id
@@ -17,12 +14,16 @@ public class Departamento {
 
     private String nome;
 
+    @OneToMany(mappedBy = "departamento")
+    private List<Curso> cursos;
+
     public Departamento() {
     }
 
-    public Departamento(Long id, String nome) {
+    public Departamento(Long id, String nome, List<Curso> cursos) {
         this.id = id;
         this.nome = nome;
+        this.cursos = cursos;
     }
 
     public Long getId() {
@@ -35,5 +36,13 @@ public class Departamento {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
     }
 }

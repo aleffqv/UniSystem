@@ -2,6 +2,7 @@ package com.Unis.UniSystem.Controller;
 
 import com.Unis.UniSystem.Model.Departamento;
 import com.Unis.UniSystem.Repository.DepartamentoRepository;
+import com.Unis.UniSystem.Service.DepartamentoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,38 +13,34 @@ import java.util.List;
 @CrossOrigin("*")
 public class DepartamentoController {
 
-    private final DepartamentoRepository repository;
+    private final DepartamentoService service;
 
-    public DepartamentoController(DepartamentoRepository repository) {
-        this.repository = repository;
+    public DepartamentoController(DepartamentoService service) {
+        this.service = service;
     }
 
     @GetMapping
     public List<Departamento> listar(){
-        return repository.findAll();
+        return service.listar();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Departamento> findDep(@PathVariable Long id){
-        return repository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        return service.findDep(id);
     }
 
     @PostMapping
     public Departamento salvar(@RequestBody Departamento departamento){
-        return repository.save(departamento);
+        return service.salvar(departamento);
     }
 
     @PutMapping("/{id}")
     public Departamento editar(@PathVariable Long id, @RequestBody Departamento departamentoAtualizado){
-        Departamento departamento = repository.findById(id).orElseThrow();
-
-        departamento.setNome(departamentoAtualizado.getNome());
-
-        return repository.save(departamento);
+        return service.editar(id, departamentoAtualizado);
     }
 
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id){
-        repository.deleteById(id);
+        service.deletar(id);
     }
 }

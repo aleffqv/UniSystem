@@ -1,6 +1,7 @@
 package com.Unis.UniSystem.Model;
 
 
+import com.Unis.UniSystem.Model.Enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +28,6 @@ public class Aluno {
     @ManyToOne
     private Curso curso;
 
-    private String status;
+
 
 }

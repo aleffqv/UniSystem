@@ -1,6 +1,7 @@
 package com.Unis.UniSystem.Model;
 
 
+import com.Unis.UniSystem.Model.Enums.Turno;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,20 +13,21 @@ public class Curso {
     private Long id;
 
     private String nome;
-    private int cargaHoraria;
-    private int duracao;
-    private String turno;
+    private Integer cargaHoraria;
+
+    @Enumerated(EnumType.STRING)
+    private Turno turno;
+
     private String status;
     private Integer periodos;
 
     @ManyToOne
     private Departamento departamento;
 
-    public Curso(Long id, String nome, int cargaHoraria, int duracao, String turno, String status, Integer periodos, Departamento departamento) {
+    public Curso(Long id, String nome, Integer cargaHoraria, Turno turno, String status, Integer periodos, Departamento departamento) {
         this.id = id;
         this.nome = nome;
         this.cargaHoraria = cargaHoraria;
-        this.duracao = duracao;
         this.turno = turno;
         this.status = status;
         this.periodos = periodos;
@@ -55,19 +57,11 @@ public class Curso {
         this.cargaHoraria = cargaHoraria;
     }
 
-    public int getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(int duracao) {
-        this.duracao = duracao;
-    }
-
-    public String getTurno() {
+    public Turno getTurno() {
         return turno;
     }
 
-    public void setTurno(String turno) {
+    public void setTurno(Turno turno) {
         this.turno = turno;
     }
 
