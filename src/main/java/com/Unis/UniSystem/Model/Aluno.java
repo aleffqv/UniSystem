@@ -12,10 +12,6 @@ import java.util.Date;
 
 @Entity
 @Table(name = "alunos")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Aluno {
 
     @Id
@@ -28,6 +24,32 @@ public class Aluno {
     @ManyToOne
     private Curso curso;
 
+    public Aluno() {
+    }
 
+    public Aluno(Long id, Pessoa pessoa, Curso curso) {
+        this.id = id;
+        this.pessoa = pessoa;
+        this.curso = curso;
+    }
 
+    public Long getId() {
+        return id;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
 }

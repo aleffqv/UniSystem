@@ -7,12 +7,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "professores")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Professor{
 
     @Id
@@ -28,5 +26,62 @@ public class Professor{
     @ManyToOne
     private Departamento departamento;
 
+    @OneToMany(mappedBy = "professor")
+    private List<Turma> turmas;
 
+    public Professor() {
+    }
+
+    public Professor(Long id, Pessoa pessoa, String titulacao, String especialidade, Departamento departamento, List<Turma> turmas) {
+        this.id = id;
+        this.pessoa = pessoa;
+        this.titulacao = titulacao;
+        this.especialidade = especialidade;
+        this.departamento = departamento;
+        this.turmas = turmas;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    public String getTitulacao() {
+        return titulacao;
+    }
+
+    public void setTitulacao(String titulacao) {
+        this.titulacao = titulacao;
+    }
+
+    public String getEspecialidade() {
+        return especialidade;
+    }
+
+    public void setEspecialidade(String especialidade) {
+        this.especialidade = especialidade;
+    }
+
+    public Departamento getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+    }
+
+    public List<Turma> getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(List<Turma> turmas) {
+        this.turmas = turmas;
+    }
 }

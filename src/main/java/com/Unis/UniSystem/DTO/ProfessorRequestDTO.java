@@ -4,16 +4,31 @@ import com.Unis.UniSystem.Model.Enums.Genero;
 import com.Unis.UniSystem.Model.Enums.Status;
 
 import java.time.LocalDate;
+import java.util.Date;
 
-public class AlunoRequestDTO {
+public class ProfessorRequestDTO {
 
     private String nome;
     private String cpf;
+    private Genero genero;
     private String email;
     private String telefone;
-    private Genero genero;
     private LocalDate dataNascimento;
+
+    private String especializacao;
+    private String titulacao;
+
     private Status status;
+
+    private Long departamentoId;
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
     public String getNome() {
         return nome;
@@ -29,6 +44,14 @@ public class AlunoRequestDTO {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public Genero getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Genero genero) {
+        this.genero = genero;
     }
 
     public String getEmail() {
@@ -47,14 +70,6 @@ public class AlunoRequestDTO {
         this.telefone = telefone;
     }
 
-    public Genero getGenero() {
-        return genero;
-    }
-
-    public void setGenero(Genero genero) {
-        this.genero = genero;
-    }
-
     public LocalDate getDataNascimento() {
         return dataNascimento;
     }
@@ -63,11 +78,27 @@ public class AlunoRequestDTO {
         this.dataNascimento = dataNascimento;
     }
 
-    public Status getStatus() {
-        return status;
+    public String getEspecializacao() {
+        return especializacao;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setEspecializacao(String especializacao) {
+        this.especializacao = especializacao;
+    }
+
+    public String getTitulacao() {
+        return titulacao;
+    }
+
+    public void setTitulacao(String titulacao) {
+        this.titulacao = titulacao;
+    }
+
+    public Long getDepartamentoId() {
+        return departamentoId;
+    }
+
+    public void setDepartamentoId(Long departamentoId) {
+        this.departamentoId = departamentoId;
     }
 }
