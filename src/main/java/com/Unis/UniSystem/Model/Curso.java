@@ -2,7 +2,10 @@ package com.Unis.UniSystem.Model;
 
 
 import com.Unis.UniSystem.Model.Enums.Turno;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "cursos")
@@ -24,7 +27,11 @@ public class Curso {
     @ManyToOne
     private Departamento departamento;
 
-    public Curso(Long id, String nome, Integer cargaHoraria, Turno turno, String status, Integer periodos, Departamento departamento) {
+    @OneToMany(mappedBy = "curso")
+    @JsonBackReference
+    private List<Disciplina> disciplinas;
+
+    public Curso(Long id, String nome, Integer cargaHoraria, Turno turno, String status, Integer periodos, Departamento departamento, List<Disciplina> disciplinas) {
         this.id = id;
         this.nome = nome;
         this.cargaHoraria = cargaHoraria;
@@ -32,6 +39,7 @@ public class Curso {
         this.status = status;
         this.periodos = periodos;
         this.departamento = departamento;
+        this.disciplinas = disciplinas;
     }
 
     public Curso() {
@@ -47,14 +55,6 @@ public class Curso {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public int getCargaHoraria() {
-        return cargaHoraria;
-    }
-
-    public void setCargaHoraria(int cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
     }
 
     public Turno getTurno() {
@@ -87,5 +87,21 @@ public class Curso {
 
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
+    }
+
+    public Integer getCargaHoraria() {
+        return cargaHoraria;
+    }
+
+    public void setCargaHoraria(Integer cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
+    }
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
     }
 }

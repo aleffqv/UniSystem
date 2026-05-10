@@ -2,7 +2,6 @@ package com.Unis.UniSystem.Controller;
 
 import com.Unis.UniSystem.DTO.ProfessorRequestDTO;
 import com.Unis.UniSystem.Model.Professor;
-import com.Unis.UniSystem.Repository.ProfessorRepository;
 import com.Unis.UniSystem.Service.ProfessorService;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,25 +12,20 @@ import java.util.List;
 @CrossOrigin("*")
 public class ProfessorController {
 
-    private final ProfessorRepository repository;
     private final ProfessorService service;
 
-    public ProfessorController(
-            ProfessorRepository repository,
-            ProfessorService service
-    ) {
-        this.repository = repository;
+    public ProfessorController(ProfessorService service) {
         this.service = service;
     }
 
     @GetMapping
     public List<Professor> listar() {
-        return repository.findAll();
+        return service.listar();
     }
 
     @GetMapping("/{id}")
     public Professor findProfessor(@PathVariable Long id) {
-        return repository.findById(id).orElseThrow();
+        return service.findProfessor(id);
     }
 
     @PostMapping
@@ -41,7 +35,7 @@ public class ProfessorController {
 
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id) {
-        repository.deleteById(id);
+        service.deletar(id);
     }
 
     @PutMapping("/{id}")
