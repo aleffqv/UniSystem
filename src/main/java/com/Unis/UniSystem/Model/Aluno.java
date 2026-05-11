@@ -1,14 +1,11 @@
 package com.Unis.UniSystem.Model;
 
-
-import com.Unis.UniSystem.Model.Enums.Status;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "alunos")
@@ -24,13 +21,18 @@ public class Aluno {
     @ManyToOne
     private Curso curso;
 
+    @OneToMany(mappedBy = "aluno")
+    @JsonIgnore
+    private List<Matricula> matriculas = new ArrayList<>();
+
     public Aluno() {
     }
 
-    public Aluno(Long id, Pessoa pessoa, Curso curso) {
+    public Aluno(Long id, Pessoa pessoa, Curso curso, List<Matricula> matriculas) {
         this.id = id;
         this.pessoa = pessoa;
         this.curso = curso;
+        this.matriculas = matriculas;
     }
 
     public Long getId() {
@@ -51,5 +53,13 @@ public class Aluno {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    public List<Matricula> getMatriculas() {
+        return matriculas;
+    }
+
+    public void setMatriculas(List<Matricula> matriculas) {
+        this.matriculas = matriculas;
     }
 }

@@ -3,6 +3,7 @@ package com.Unis.UniSystem.Model;
 
 import com.Unis.UniSystem.Model.Enums.Turno;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class Curso {
     private Departamento departamento;
 
     @OneToMany(mappedBy = "curso")
-    @JsonBackReference
+    @JsonIgnore
     private List<Disciplina> disciplinas;
 
     public Curso(Long id, String nome, Integer cargaHoraria, Turno turno, String status, Integer periodos, Departamento departamento, List<Disciplina> disciplinas) {

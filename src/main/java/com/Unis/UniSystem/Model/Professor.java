@@ -1,6 +1,7 @@
 package com.Unis.UniSystem.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +28,7 @@ public class Professor{
     private Departamento departamento;
 
     @OneToMany(mappedBy = "professor")
+    @JsonIgnore
     private List<Turma> turmas;
 
     public Professor() {
