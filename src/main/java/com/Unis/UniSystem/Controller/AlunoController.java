@@ -42,4 +42,9 @@ public class AlunoController {
     public void deletar(@PathVariable Long id){
         service.deletar(id);
     }
+
+    @PutMapping("/{alunoId}/curso/{cursoId}")
+    public Aluno matricularAlunoCurso(@PathVariable Long alunoId, @PathVariable Long cursoId){
+        return service.matricularAlunoCurso(alunoId, cursoId);
+    }
 }

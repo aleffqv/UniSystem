@@ -2,8 +2,10 @@ package com.Unis.UniSystem.Service;
 
 import com.Unis.UniSystem.DTO.AlunoRequestDTO;
 import com.Unis.UniSystem.Model.Aluno;
+import com.Unis.UniSystem.Model.Curso;
 import com.Unis.UniSystem.Model.Pessoa;
 import com.Unis.UniSystem.Repository.AlunoRepository;
+import com.Unis.UniSystem.Repository.CursoRepository;
 import com.Unis.UniSystem.Repository.PessoaRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +16,12 @@ public class AlunoService {
 
     private final AlunoRepository alunoRepository;
     private final PessoaRepository pessoaRepository;
+    private final CursoRepository cursoRepository;
 
-    public AlunoService(AlunoRepository alunoRepository, PessoaRepository pessoaRepository) {
+    public AlunoService(AlunoRepository alunoRepository, PessoaRepository pessoaRepository, CursoRepository cursoRepository) {
         this.alunoRepository = alunoRepository;
         this.pessoaRepository = pessoaRepository;
+        this.cursoRepository = cursoRepository;
     }
 
     public List<Aluno> listar(){
@@ -77,6 +81,19 @@ public class AlunoService {
         alunoRepository.delete(aluno);
 
         pessoaRepository.delete(pessoa);
+    }
+
+    public Aluno matricularAlunoCurso(Long alunoId, Long cursoId){
+
+        Aluno aluno = alunoRepository.findById(alunoId).orElseThrow();
+        Curso curso = cursoRepository.findById(cursoId).orElseThrow();
+
+        if(aluno.getCurso() != null){
+            throw new RuntimeException("Aluno já matriculado em curso");
+        }
+
+        aluno.setCurso(curso);
+        return alunoRepository.save(aluno);
     }
 
 }
