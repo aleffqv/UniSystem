@@ -22,6 +22,7 @@ public class Matricula {
     private Aluno aluno;
 
     @ManyToOne
+    @JsonBackReference
     private Turma turma;
 
     private LocalDate dataMatricula;

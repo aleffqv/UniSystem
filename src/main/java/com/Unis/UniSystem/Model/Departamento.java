@@ -1,6 +1,7 @@
 package com.Unis.UniSystem.Model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class Departamento {
     private String nome;
 
     @OneToMany(mappedBy = "departamento")
-    @JsonBackReference
+    @JsonManagedReference
     private List<Curso> cursos;
 
     public Departamento() {

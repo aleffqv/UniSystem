@@ -67,7 +67,7 @@ public class AlunoService {
         pessoa.setDataNascimento(request.getDataNascimento());
         pessoa.setStatus(request.getStatus());
 
-        pessoaRepository.save(pessoa);
+        //pessoaRepository.save(pessoa);
 
         return alunoRepository.save(aluno);
     }
