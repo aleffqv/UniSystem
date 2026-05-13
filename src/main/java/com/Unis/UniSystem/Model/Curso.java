@@ -26,7 +26,7 @@ public class Curso {
     private Integer periodos;
 
     @ManyToOne
-    @JsonBackReference
+    //@JsonBackReference
     private Departamento departamento;
 
     @OneToMany(mappedBy = "curso")

@@ -28,7 +28,8 @@ public class Disciplina {
     private Curso curso;
 
     @OneToMany(mappedBy = "disciplina")
-    @JsonManagedReference
+//    @JsonManagedReference
+    @JsonIgnore
     private List<Turma> turmas;
 
     public Disciplina() {

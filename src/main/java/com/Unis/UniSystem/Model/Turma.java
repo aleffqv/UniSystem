@@ -21,7 +21,7 @@ public class Turma {
     private Long id;
 
     @ManyToOne
-    @JsonBackReference
+//    @JsonBackReference
     private Disciplina disciplina;
 
     @ManyToOne
@@ -33,7 +33,7 @@ public class Turma {
     private Integer nvagas;
 
     @OneToMany(mappedBy = "turma")
-    @JsonManagedReference
+//    @JsonManagedReference
     private List<Matricula> matriculas = new ArrayList<>();
 
     public Turma() {

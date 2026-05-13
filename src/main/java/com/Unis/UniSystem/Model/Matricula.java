@@ -1,6 +1,7 @@
 package com.Unis.UniSystem.Model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,7 +23,8 @@ public class Matricula {
     private Aluno aluno;
 
     @ManyToOne
-    @JsonBackReference
+//    @JsonBackReference
+    @JsonIgnore
     private Turma turma;
 
     private LocalDate dataMatricula;
