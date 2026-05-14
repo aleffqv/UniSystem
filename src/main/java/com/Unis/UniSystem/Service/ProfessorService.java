@@ -1,6 +1,9 @@
 package com.Unis.UniSystem.Service;
 
 import com.Unis.UniSystem.DTO.ProfessorRequestDTO;
+import com.Unis.UniSystem.DTO.Response.ProfessorResponseDTO;
+import com.Unis.UniSystem.DTO.Resumo.DepartamentoResumoDTO;
+import com.Unis.UniSystem.DTO.Resumo.PessoaResumoDTO;
 import com.Unis.UniSystem.Model.Departamento;
 import com.Unis.UniSystem.Model.Pessoa;
 import com.Unis.UniSystem.Model.Professor;
@@ -90,6 +93,26 @@ public class ProfessorService {
         professorRepository.delete(professor);
 
         pessoaRepository.delete(pessoa);
+    }
+
+    public ProfessorResponseDTO convertDTO(Professor professor){
+        PessoaResumoDTO pessoaResumoDTO =
+                new PessoaResumoDTO(
+                        professor.getPessoa().getNome(),
+                        professor.getPessoa().getCpf(), professor.getPessoa().getGenero(),
+                        professor.getPessoa().getEmail(),
+                        professor.getPessoa().getTelefone(),
+                        professor.getPessoa().getDataNascimento(),
+                        professor.getPessoa().getStatus()
+                );
+
+        DepartamentoResumoDTO departamentoResumoDTO =
+                new DepartamentoResumoDTO(
+                  professor.getDepartamento().getId(),
+                  professor.getDepartamento().getNome()
+                );
+
+
     }
 
 
